@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Morse Code Converter</title>
+</head>
+<body>
+<h1>Morse Code Converter</h1>
+<p><em>Valid characters are letters, numbers and the symbols <b>. , ? ! - / @ (</b> and<b> )</b>. Invalid characters
+    will be converted to <b>#</b>. Spaces between words will be converted to <b>/</b>.</em><br><em>If you wish to
+    decode morse code instead, put spaces between letters and <b>/</b> between words. Invalid characters will result to
+    <b>#</b>.</em></p>
+<form action="" method="POST">
+    <input type="radio" name="choice" value="convert" checked="checked">Convert text to morse code<br>
+    <input type="radio" name="choice" value="decode">Decode morse code<br><br>
+    <label>Enter text to convert:</label><br>
+    <textarea name="input_text" rows="5" cols="50"></textarea><br>
+    <button type="submit">Convert</button>
+</form>
+<br>
+
+{% if input_text %}
+<p><b>Your Input:</b> {{ input_text }}</p>
+<p>
+    {% if choice == "convert" %}
+    <p></p><b>You selected:</b> Convert text to morse code</p>
+    <b>Morse Code</b>
+    {% else %}
+    <p><b>You selected:</b> Decode morse code</p>
+    <b>Decoded Text</b>
+    {% endif %}
+</p>
+<textarea readonly id="text-to-copy" rows="5" cols="50">{{ converted_text }}</textarea>
+<br></p>
+<button onclick="copyToClipboard()">Copy to Clipboard</button>
+{% elif choice == 'option2' %}
+<p>You selected option 2</p>
+{% endif %}
+
+
+<script>
+function copyToClipboard() {
+  // Get the textarea element
+  var copyTextarea = document.getElementById("text-to-copy");
+
+  // Select the text in the textarea
+  copyTextarea.select();
+
+  // Copy the text to the clipboard
+  document.execCommand("copy");
+}
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
